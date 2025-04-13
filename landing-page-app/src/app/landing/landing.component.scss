@@ -4,27 +4,57 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: white;
   text-align: center;
   padding: 2rem;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .cta-button {
+    display: inline-block;
     padding: 1rem 2rem;
-    background: #00b4db;
+    background-color: #4CAF50;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      transform: scale(1.05);
+      background-color: #45a049;
+    }
+  }
+
+  .whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    i {
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background-color: #128C7E;
     }
   }
 } 
