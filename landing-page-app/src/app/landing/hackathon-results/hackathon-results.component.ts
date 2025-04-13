@@ -85,6 +85,17 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
         </div>
+
+        <div class="whatsapp-section">
+          <div class="whatsapp-box">
+            <h3>Join Our Hackathon Community</h3>
+            <p>Stay updated with future hackathon news and updates</p>
+            <a [href]="prizeDistributionInfo.whatsappLink" target="_blank" class="whatsapp-button">
+              <i class="fab fa-whatsapp"></i>
+              Join WhatsApp Group
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   `,
@@ -453,6 +464,61 @@ import { CommonModule } from '@angular/common';
         border-radius: 12px;
       }
     }
+
+    .whatsapp-section {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .whatsapp-box {
+      background: rgba(0, 247, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(0, 247, 255, 0.2);
+      box-shadow: 0 0 30px rgba(0, 247, 255, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .whatsapp-box h3 {
+      color: #00f7ff;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .whatsapp-box p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #25D366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .whatsapp-button:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-button i {
+      font-size: 1.2rem;
+    }
   `]
 })
 export class HackathonResultsComponent implements OnInit {
@@ -484,7 +550,7 @@ export class HackathonResultsComponent implements OnInit {
       medal: '🥈'
     },
     {
-      position: 'Consolation Prize',
+      position: 'Consolation Winner',
       teamId: 'NH-2K25-I18',
       team: 'Robo-Rath',
       domain: 'IOT',
@@ -495,7 +561,7 @@ export class HackathonResultsComponent implements OnInit {
       medal: '🎉'
     },
     {
-      position: 'Consolation Prize',
+      position: 'Consolation Winner',
       teamId: 'NH-2K25-I25',
       team: 'Bot Buster',
       domain: 'IOT',
@@ -506,6 +572,11 @@ export class HackathonResultsComponent implements OnInit {
       medal: '🎉'
     }
   ];
+
+  prizeDistributionInfo = {
+    message: 'Prizes will be distributed in the upcoming event by ASCII',
+    whatsappLink: 'https://chat.whatsapp.com/IPzP43WzGQ5K1GrFMyHSER'
+  };
 
   ngOnInit() {
     this.updateCountdown();

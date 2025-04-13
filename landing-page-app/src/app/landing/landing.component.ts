@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -95,6 +95,12 @@ import { RouterModule, Router } from '@angular/router';
       <div class="cta-section">
         <a routerLink="/hackathon-results" class="cta-button results-btn">View Results</a>
         <span class="cta-button register-btn closed">Registration Closed</span>
+      </div>
+
+      <div class="whatsapp-section">
+        <a href="https://chat.whatsapp.com/IPzP43WzGQ5K1GrFMyHSER" target="_blank" class="whatsapp-channel-button">
+          <i class="fab fa-whatsapp"></i> Join Channel for Updates and be a part of community
+        </a>
       </div>
     </div>
   `,
@@ -278,6 +284,39 @@ import { RouterModule, Router } from '@angular/router';
       }
     }
 
+    .whatsapp-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      padding: 2rem;
+    }
+
+    .whatsapp-channel-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #25D366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-channel-button:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .whatsapp-channel-button i {
+      font-size: 1.2rem;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -310,33 +349,5 @@ import { RouterModule, Router } from '@angular/router';
     }
   `]
 })
-export class LandingComponent implements OnInit {
-  countdown: number = 10;
-  showResults: boolean = false;
-  private timer: any;
-
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.startCountdown();
-  }
-
-  startCountdown() {
-    this.timer = setInterval(() => {
-      this.countdown--;
-      if (this.countdown <= 0) {
-        clearInterval(this.timer);
-        this.showResults = true;
-        setTimeout(() => {
-          this.router.navigate(['/hackathon-results']);
-        }, 1000);
-      }
-    }, 1000);
-  }
-
-  ngOnDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
-  }
+export class LandingComponent {
 }
