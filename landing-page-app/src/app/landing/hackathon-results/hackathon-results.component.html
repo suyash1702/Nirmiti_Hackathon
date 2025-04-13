@@ -1,0 +1,31 @@
+<div class="results-container">
+  <div class="header">
+    <h1>Nirmiti Hackathon 2024</h1>
+    <p class="subtitle">Results Announcement</p>
+  </div>
+
+  <div class="countdown-section" *ngIf="!showResults">
+    <div class="countdown-box">
+      <h2>Results will be announced in</h2>
+      <div class="timer">{{ countdown }}</div>
+      <p class="announcement-time">at 12:00 PM</p>
+    </div>
+  </div>
+
+  <div class="results-section" *ngIf="showResults">
+    <div class="announcement-box" *ngFor="let candidate of candidates; let i = index">
+      <div class="result-card" 
+           [class.visible]="i < currentAnnouncement"
+           [class.current]="i === currentAnnouncement">
+        <div class="position">{{ candidate.position }}</div>
+        <div class="team-name">{{ candidate.name }}</div>
+        <div class="project">Project: {{ candidate.project }}</div>
+        <div class="prize">Prize: {{ candidate.prize }}</div>
+      </div>
+    </div>
+
+    <div class="celebration" *ngIf="announcementComplete">
+      <h2>🎉 Congratulations to all winners! 🎉</h2>
+    </div>
+  </div>
+</div> 

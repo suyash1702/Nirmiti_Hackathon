@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nirmiti-hackathon
+    env: static
+    buildCommand: cd landing-page-app && npm install --legacy-peer-deps && npm run build -- --configuration production
+    staticPublishPath: landing-page-app/dist/landing-page-app/browser
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html 
