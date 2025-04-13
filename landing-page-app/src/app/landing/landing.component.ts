@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -310,5 +310,33 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
+  countdown: number = 10;
+  showResults: boolean = false;
+  private timer: any;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.startCountdown();
+  }
+
+  startCountdown() {
+    this.timer = setInterval(() => {
+      this.countdown--;
+      if (this.countdown <= 0) {
+        clearInterval(this.timer);
+        this.showResults = true;
+        setTimeout(() => {
+          this.router.navigate(['/hackathon-results']);
+        }, 1000);
+      }
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
 }

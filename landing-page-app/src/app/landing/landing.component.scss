@@ -15,6 +15,23 @@
     color: #333;
   }
 
+  .countdown-container {
+    margin: 2rem 0;
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #4CAF50;
+      animation: pulse 1s infinite;
+    }
+  }
+
   .button-container {
     display: flex;
     gap: 1rem;
@@ -56,5 +73,17 @@
     &:hover {
       background-color: #128C7E;
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 } 
