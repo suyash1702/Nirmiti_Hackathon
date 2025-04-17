@@ -7,35 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div class="results-container">
-      <div class="countdown-section" *ngIf="!showResults">
-        <div class="countdown-box">
-          <div class="header-with-logo">
-            <div class="neon-logo-svg">
-              <svg viewBox="0 0 200 200" class="logo-svg">
-                <circle cx="100" cy="100" r="90" class="outer-circle" />
-                <g class="hexagon-with-lines">
-                  <path d="M100 40L160 70V130L100 160L40 130V70L100 40Z" class="hexagon-path" />
-                  <line x1="100" y1="70" x2="100" y2="130" class="circuit-line" />
-                  <line x1="70" y1="100" x2="130" y2="100" class="circuit-line" />
-                  <circle cx="100" cy="70" r="3" class="circuit-dot" />
-                  <circle cx="100" cy="130" r="3" class="circuit-dot" />
-                  <circle cx="70" cy="100" r="3" class="circuit-dot" />
-                  <circle cx="130" cy="100" r="3" class="circuit-dot" />
-                </g>
-                <text x="50" y="185" class="year-text">2025</text>
-              </svg>
-            </div>
-            <div class="title-section">
-              <h2>Results will be revealed at</h2>
-              <div class="announcement-time">7:00 PM</div>
-              <div class="timer">{{ countdown }}</div>
-              <p class="time-left">Time Remaining</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="results-section" *ngIf="showResults">
+      <div class="results-section">
         <div class="header">
           <div class="header-with-logo">
             <div class="neon-logo-svg">
@@ -61,9 +33,8 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="winners-grid">
-          <div *ngFor="let winner of winners; let i = index" 
-               class="winner-card"
-               [class.revealed]="i < currentRevealIndex">
+          <div *ngFor="let winner of winners" 
+               class="winner-card">
             <div class="card-content">
               <div class="medal">{{ winner.medal }}</div>
               <div class="position-badge">{{ winner.position }}</div>
@@ -522,10 +493,6 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class HackathonResultsComponent implements OnInit {
-  countdown: string = '';
-  showResults: boolean = false;
-  currentRevealIndex: number = 0;
-
   winners = [
     {
       position: 'First Place Winner',
@@ -579,43 +546,5 @@ export class HackathonResultsComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.updateCountdown();
-    setInterval(() => this.updateCountdown(), 1000);
-  }
-
-  updateCountdown() {
-    const now = new Date();
-    const announcementTime = new Date();
-    
-    // Set announcement time to 7 PM today
-    announcementTime.setHours(19, 0, 0, 0);
-
-    if (now >= announcementTime) {
-      // If it's past 7 PM, show results
-      this.showResults = true;
-      if (this.currentRevealIndex === 0) {
-        this.revealWinners();
-      }
-    } else {
-      // If it's before 7 PM, show countdown
-      const diff = announcementTime.getTime() - now.getTime();
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      this.countdown = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-  }
-
-  revealWinners() {
-    let index = 0;
-    const revealInterval = setInterval(() => {
-      if (index < this.winners.length) {
-        this.currentRevealIndex++;
-        index++;
-      } else {
-        clearInterval(revealInterval);
-      }
-    }, 1500);
   }
 } 
