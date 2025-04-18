@@ -579,31 +579,21 @@ export class HackathonResultsComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.updateCountdown();
-    setInterval(() => this.updateCountdown(), 1000);
+    this.showResults = true; // Show results immediately
+    this.revealWinners(); // Reveal winners immediately
   }
 
   updateCountdown() {
     const now = new Date();
-    const announcementTime = new Date();
-    
-    // Set announcement time to 7 PM today
-    announcementTime.setHours(19, 0, 0, 0);
+    const announcementTime = new Date(now.getTime() + 1000); // Set to one second from now
 
     if (now >= announcementTime) {
-      // If it's past 7 PM, show results
-      this.showResults = true;
-      if (this.currentRevealIndex === 0) {
-        this.revealWinners();
-      }
+        this.showResults = true;
+        if (this.currentRevealIndex === 0) {
+            this.revealWinners();
+        }
     } else {
-      // If it's before 7 PM, show countdown
-      const diff = announcementTime.getTime() - now.getTime();
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      this.countdown = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        // Existing countdown logic
     }
   }
 
@@ -617,9 +607,5 @@ export class HackathonResultsComponent implements OnInit {
         clearInterval(revealInterval);
       }
     }, 1500);
-
-    setTimeout(() => {
-      console.log("Results displayed after 3 seconds!");
-    }, 3000); // 3000 milliseconds = 3 seconds
   }
 } 
