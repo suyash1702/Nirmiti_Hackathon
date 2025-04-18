@@ -617,5 +617,9 @@ export class HackathonResultsComponent implements OnInit {
         clearInterval(revealInterval);
       }
     }, 1500);
+
+    setTimeout(() => {
+      console.log("Results displayed after 3 seconds!");
+    }, 3000); // 3000 milliseconds = 3 seconds
   }
 } 
